@@ -1,5 +1,7 @@
 extern crate core;
 
+const MAX_ITERATIONS_COUNT: i64 = 1000000000;
+
 fn find_roots(
     f: fn(f64) -> f64,
     df: fn(f64) -> f64,
@@ -12,7 +14,7 @@ fn find_roots(
     let mut i = lower_bound;
     let step = epsilon * 10.0;
     while i + step <= upper_bound {
-        match find_root_newton(f, df, df2, i, epsilon, 1000000000) {
+        match find_root_newton(f, df, df2, i, epsilon, MAX_ITERATIONS_COUNT) {
             None => {
                 i += step;
                 continue;
